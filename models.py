@@ -1,6 +1,17 @@
 import arcade.key
-
+from time import time 
 from random import randint
+
+class life:
+	def __init__(self, world):
+		self.lifes = 3
+
+	def loseLife(self):
+		self.lifes -= 1
+
+	def update(self):
+		if(self.lifes == 0):
+			print("game over")
 
 class Question:
 	def __init__(self, world):
@@ -11,12 +22,16 @@ class Question:
 
 		self.questionRnd = [self.rand_color,self.rand_direction]
 
+		print("init"+str(self.questionRnd[self.rand_type]))
+	
 	def checkAns(self, choice):
+		print(self.questionRnd[self.rand_type])
+		print("choice"+str(choice))
 		if(self.questionRnd[self.rand_type] == choice):
 			self.world.score += 10;
 			print(self.world.score)
 		else:
-			print ("wrong")
+			self.world.life.loseLife()
 		self.renewQ()
 
 	def renewQ(self):
@@ -26,12 +41,16 @@ class Question:
 
 		self.questionRnd = [self.rand_color,self.rand_direction]
 		
+		print("type"+str(self.rand_type))
+		print("init"+str(self.questionRnd[self.rand_type]))
 
 class World:
 	def __init__(self, width, height):
 		self.question = Question(self)
 		self.score = 0
-	
+		self.life = life(self)
+		self.markedTime = time()
+
 	def on_key_press(self, key, modifiers):
 		if key == arcade.key.UP:
 			self.question.checkAns(2)
@@ -42,4 +61,8 @@ class World:
 		elif key == arcade.key.RIGHT:
 			self.question.checkAns(3)
 
-
+	def animate(self, delta):
+		self.life.update()
+		if(time() - self.markedTime >=3):
+			self.markedTime = time()
+			self.question.renewQ()
