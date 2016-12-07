@@ -42,6 +42,14 @@ class ThinkTwiceWindow(arcade.Window):
 		arcade.draw_text("Which one has",250,460,arcade.color.WHITE, 20)
 		arcade.draw_text("the same "+Type[self.world.question.rand_type]+" with",130,390,arcade.color.WHITE, 20)
 
+	def animate(self, delta):
+		self.update_question()
+
+	def update_question(self):	
+		for i in range(0,2):
+			question[i] = arcade.Sprite(self.image[i][self.world.question.questionRnd[i]],scale)
+			question[i].set_position(530,390)
+
 	def on_key_press(self, key, modifiers):
 		self.world.on_key_press(key, modifiers)
 
