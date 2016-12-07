@@ -42,6 +42,9 @@ class ThinkTwiceWindow(arcade.Window):
 		arcade.draw_text("Which one has",250,460,arcade.color.WHITE, 20)
 		arcade.draw_text("the same "+Type[self.world.question.rand_type]+" with",130,390,arcade.color.WHITE, 20)
 
+	def on_key_press(self, key, modifiers):
+		self.world.on_key_press(key, modifiers)
+
 if __name__ == '__main__':
 	window = ThinkTwiceWindow(SCREEN_WIDTH, SCREEN_HEIGHT)
 	arcade.run()
