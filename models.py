@@ -52,6 +52,8 @@ class World:
 			self.question.checkAns(0)
 		elif key == arcade.key.RIGHT:
 			self.question.checkAns(3)
+		elif(not self.canPlay and key == arcade.key.SPACE):
+			self.clear()
 
 	def animate(self, delta):
 		self.life.update()
@@ -60,3 +62,10 @@ class World:
 			self.markedTime = time()
 			self.life.loseLife()
 			self.question.newQuestion()
+	
+	def clear(self):
+		self.markedTime = time()
+		self.question.newQuestion()
+		self.life.lifes = 3
+		self.canPlay = True
+		self.score = 0

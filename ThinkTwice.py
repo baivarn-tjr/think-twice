@@ -54,7 +54,7 @@ class ThinkTwiceWindow(arcade.Window):
 
 		else:
 			arcade.draw_text("your score is  "+ str(self.world.score),300,400,arcade.color.WHITE, 22)
-			
+			arcade.draw_text("press spacebar to play again",220,300,arcade.color.WHITE, 20)			
 	def animate(self, delta):
 		self.update_question()
 		self.world.animate(delta)
