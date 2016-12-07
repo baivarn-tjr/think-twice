@@ -12,39 +12,28 @@ class life:
 
 	def update(self):
 		if(self.lifes == 0):
-			print("game over")
 			self.world.canPlay = False
 
 class Question:
 	def __init__(self, world):
 		self.world = world
-		self.rand_type = randint(0,1)
-		self.rand_direction = randint(0,3)
-		self.rand_color = randint(0,3)
-
-		self.questionRnd = [self.rand_color,self.rand_direction]
-
-		print("init"+str(self.questionRnd[self.rand_type]))
+		self.newQuestion()
 	
 	def checkAns(self, choice):
-		print(self.questionRnd[self.rand_type])
-		print("choice"+str(choice))
 		if(self.questionRnd[self.rand_type] == choice):
 			self.world.score += 10;
-			print(self.world.score)
 		else:
 			self.world.life.loseLife()
-		self.renewQ()
+		self.newQuestion()
 
-	def renewQ(self):
+	def newQuestion(self):
 		self.rand_type = randint(0,1)
 		self.rand_direction = randint(0,3)
 		self.rand_color = randint(0,3)
 
 		self.questionRnd = [self.rand_color,self.rand_direction]
 		
-		print("type"+str(self.rand_type))
-		print("init"+str(self.questionRnd[self.rand_type]))
+		self.world.markedTime = time()
 
 class World:
 	def __init__(self, width, height):
@@ -70,4 +59,4 @@ class World:
 		if(self.time >=3):
 			self.markedTime = time()
 			self.life.loseLife()
-			self.question.renewQ()
+			self.question.newQuestion()
