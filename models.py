@@ -63,6 +63,8 @@ class World:
 
 	def animate(self, delta):
 		self.life.update()
-		if(time() - self.markedTime >=3):
+		self.time = time() - self.markedTime
+		if(self.time >=3):
 			self.markedTime = time()
+			self.life.loseLife()
 			self.question.renewQ()
