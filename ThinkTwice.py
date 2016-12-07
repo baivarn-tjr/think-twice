@@ -41,6 +41,7 @@ class ThinkTwiceWindow(arcade.Window):
 		
 		arcade.draw_text("Which one has",250,460,arcade.color.WHITE, 20)
 		arcade.draw_text("the same "+Type[self.world.question.rand_type]+" with",130,390,arcade.color.WHITE, 20)
+		arcade.draw_text("score: "+ str(self.world.score),650,550, arcade.color.WHITE, 18)
 
 	def animate(self, delta):
 		self.update_question()
