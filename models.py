@@ -5,6 +5,7 @@ from random import randint
 class life:
 	def __init__(self, world):
 		self.lifes = 3
+		self.world = world
 
 	def loseLife(self):
 		self.lifes -= 1
@@ -12,6 +13,7 @@ class life:
 	def update(self):
 		if(self.lifes == 0):
 			print("game over")
+			self.world.canPlay = False
 
 class Question:
 	def __init__(self, world):
@@ -50,6 +52,7 @@ class World:
 		self.score = 0
 		self.life = life(self)
 		self.markedTime = time()
+		self.canPlay = True
 
 	def on_key_press(self, key, modifiers):
 		if key == arcade.key.UP:

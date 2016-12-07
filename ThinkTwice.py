@@ -38,20 +38,23 @@ class ThinkTwiceWindow(arcade.Window):
 
 	def on_draw(self):
 		arcade.start_render()
-		 
-		for i in range(0,2):
-			question[i].draw()
-			for j in range(0,4):
-				Arrow[i][j].draw()
+		if(self.world.canPlay): 
+			for i in range(0,2):
+				question[i].draw()
+				for j in range(0,4):
+					Arrow[i][j].draw()
 		
-		for i in range(0,self.world.life.lifes):
-			self.heart[i].draw()
+			for i in range(0,self.world.life.lifes):
+				self.heart[i].draw()
 
-		arcade.draw_text("Which one has",250,460,arcade.color.WHITE, 20)
-		arcade.draw_text("the same "+Type[self.world.question.rand_type]+" with",130,390,arcade.color.WHITE, 20)
-		arcade.draw_text("score: "+ str(self.world.score),650,550, arcade.color.WHITE, 18)
-		arcade.draw_text("time: "+str(int(4-self.world.time)),350,550,arcade.color.WHITE, 18)
+			arcade.draw_text("Which one has",250,460,arcade.color.WHITE, 20)
+			arcade.draw_text("the same "+Type[self.world.question.rand_type]+" with",130,390,arcade.color.WHITE, 20)
+			arcade.draw_text("score: "+ str(self.world.score),650,550, arcade.color.WHITE, 18)
+			arcade.draw_text("time: "+str(int(4-self.world.time)),350,550,arcade.color.WHITE, 18)
 
+		else:
+			arcade.draw_text("your score is  "+ str(self.world.score),300,400,arcade.color.WHITE, 22)
+			
 	def animate(self, delta):
 		self.update_question()
 		self.world.animate(delta)
