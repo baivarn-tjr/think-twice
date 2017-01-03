@@ -44,14 +44,15 @@ class World:
 		self.canPlay = True
 
 	def on_key_press(self, key, modifiers):
-		if key == arcade.key.UP:
-			self.question.checkAns(2)
-		elif key == arcade.key.DOWN:
-			self.question.checkAns(1)
-		elif key == arcade.key.LEFT:
-			self.question.checkAns(0)
-		elif key == arcade.key.RIGHT:
-			self.question.checkAns(3)
+		if(self.canPlay):
+			if key == arcade.key.UP:
+				self.question.checkAns(2)
+			elif key == arcade.key.DOWN:
+				self.question.checkAns(1)
+			elif key == arcade.key.LEFT:
+				self.question.checkAns(0)
+			elif key == arcade.key.RIGHT:
+				self.question.checkAns(3)
 		elif(not self.canPlay and key == arcade.key.SPACE):
 			self.clear()
 
